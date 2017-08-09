@@ -1,0 +1,123 @@
+@import "http://fonts.googleapis.com/css?family=Raleway";
+
+/* Above line is used for online google font */
+h2 {
+color:red;
+text-align:center;
+font-size:36px;
+font-family: 'Arial';
+
+}
+h2:hover, h2:active {
+    color: #8f42f4;
+}
+
+span {
+display:block;
+margin-bottom:20px;
+color:red;
+}
+.success {
+display:block;
+margin-top:20px;
+margin-bottom:0;
+font-size:14px
+}
+b {
+color:green
+}
+hr {
+margin:10px -50px;
+border:0;
+border-top:1px solid #ccc;
+margin-bottom:25px
+}
+div.container {
+width:900px;
+height:610px;
+margin:35px auto;
+font-family:'Raleway',sans-serif
+}
+div.main {
+width:306px;
+padding:10px 50px 30px;
+border:2px solid gray;
+border-radius:10px;
+font-family:raleway;
+float:left;
+margin-top:15px;
+background-color:#bce0ee;
+}
+div.background {
+background-color:#bce0ee;
+}
+input[type=text] {
+width:96%;
+height:25px;
+padding:5px;
+margin-bottom:25px;
+margin-top:5px;
+border:2px solid #ccc;
+color:#4f4f4f;
+font-size:16px;
+border-radius:5px;
+background:#e6fff2
+}
+input[type=radio] {
+margin:10px 10px 0
+}
+label {
+color:#464646;
+text-shadow:0 1px 0 #fff;
+font-size:14px;
+font-weight:700
+}
+input[type=submit] {
+font-size:16px;
+background:linear-gradient(#b3ffd9 5%,#00cc66 100%);
+border:1px solid #e5a900;
+color:#4E4D4B;
+font-weight:700;
+cursor:pointer;
+width:100%;
+border-radius:5px;
+padding:10px 0;
+outline:none
+}
+input[type=submit]:hover {
+background:linear-gradient(#66ff99 5%,#49a5bf 100%)
+}
+
+
+a:link, a:visited {
+    background-color: #8f42f4;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:hover, a:active {
+    background-color: #42f45f;
+}
+
+a.button {
+    background-color: #8f42f4;
+    color: white;
+    padding: 5px 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+a.button:hover {
+    background-color: #42f45f;
+}
+
+a.contact {
+    background-color: #bce0ee;
+    color: #bce0ee;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}

@@ -1,0 +1,170 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="http://openlayers.org/en/v3.10.1/css/ol.css" type="text/css">
+    <link rel="stylesheet" href="http://rawgit.com/walkermatt/ol3-layerswitcher/master/src/ol3-layerswitcher.css" type="text/css">
+    <style>
+   
+      .map {
+        width: 100%;
+        height: 100%;
+        float: left;
+      }
+    
+
+      
+    </style>
+    <script src="http://openlayers.org/en/v3.10.1/build/ol.js" type="text/javascript"></script>
+    <title>SERVIR Mapping</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+    <div class="row-fluid">
+    <div id="map" class="map"></div>
+ 
+
+    <script src="http://rawgit.com/walkermatt/ol3-layerswitcher/master/src/ol3-layerswitcher.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    
+/////////////////////////////////////////////
+ 
+
+      var pathum = ol.proj.transform([100.6131819961167,13.81328489039565], 'EPSG:4326', 'EPSG:3857');
+      var view = new ol.View({
+        center:  pathum,
+        zoom: 9,
+	minZoom: 3,
+	maxZoom: 20
+      });
+      
+        var map = new ol.Map({
+        controls: ol.control.defaults().extend([
+	new ol.control.ScaleLine(),
+	new ol.control.OverviewMap(),
+          new ol.control.FullScreen({
+            source: 'fullscreen'
+          })
+        ]),
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          })
+        ],
+        target: 'map',
+	view: view
+      });
+
+
+
+	
+//////////////////////////////////////////////////function	
+	function doBounce(location) {
+        // bounce by zooming out one level and back in
+        var bounce = ol.animation.bounce({
+          resolution: map.getView().getResolution() * 3
+        });
+	 // start the pan at the current center of the map
+        var pan = ol.animation.pan({
+          source: map.getView().getCenter()
+        });
+        map.beforeRender(bounce);
+        map.beforeRender(pan);
+        // when we set the center to the new location, the animated move will
+        // trigger the bounce and pan effects
+        map.getView().setCenter(location);
+      }
+	
+/////////////////////////////////////////////////////////////////////////////////////	
+
+		var cities = new ol.layer.Vector({
+			title: 'Cities',
+			source: new ol.source.Vector({
+				format: new ol.format.KML({extractStyles:false}),
+				url: 'cities.kml'
+			}),
+			
+			style: new ol.style.Style({				
+	
+				
+				fill: new ol.style.Fill({
+					color: 'rgba(255,255,255,0.5)'
+				}),
+				stroke: new ol.style.Stroke({
+				color: '#ffcc33',
+				width: 2
+				}),
+				
+				image: new ol.style.Circle({
+				radius: 5,
+				fill: new ol.style.Fill({
+					color:'#ffcc33'
+				})
+				})	
+			}),
+			visible: true
+		      }); 
+		      
+
+		      
+		      
+		// MapQuest streets
+		var osmBase = new ol.layer.Tile({
+		  //title: 'Open Street Map',
+		  group: "background",
+		  source: new ol.source.MapQuest({layer: 'osm'})
+		})
+/////////////////////////////////////////////////////////////////////////////////////
+		
+
+		
+		var HRSL2015 = new ol.layer.Tile({title: 'Population(HRSL2015)',
+			source: new ol.source.TileWMS ({
+				url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
+				//params:{'LAYERS':'servir:bangkokMetroPopHRSL2015','TILED': true},
+				params:{'LAYERS':'servir:bangkokMetroPopHRSL2015','TILED': true},
+				serverType: 'geoserver'			
+			})		
+		})
+		
+		
+		
+			
+//////////////////////////////////////////////////////////////////////////////////////		
+	
+	map.addLayer(osmBase);
+	
+	map.addLayer(HRSL2015);
+	map.addLayer(cities);
+	
+	
+        var layerSwitcher = new ol.control.LayerSwitcher({
+              tipLabel: 'L?gende' // Optional label for button
+        });
+        map.addControl(layerSwitcher);
+////////////////////////////////////////////////////////////////
+map.on('singleclick', function(evt) {
+  document.getElementById('info').innerHTML = '';
+  var viewResolution = /** @type {number} */ (view.getResolution());
+  var url = wmsSource.getGetFeatureInfoUrl(
+      evt.coordinate, viewResolution, 'EPSG:3857',
+      {'INFO_FORMAT': 'text/html'});
+  if (url) {
+    document.getElementById('info').innerHTML =
+        '<iframe seamless src="' + url + '"></iframe>';
+  }
+});
+
+map.on('pointermove', function(evt) {
+  if (evt.dragging) {
+    return;
+  }
+  var pixel = map.getEventPixel(evt.originalEvent);
+  var hit = map.forEachLayerAtPixel(pixel, function(layer) {
+    return true;
+  });
+  map.getTargetElement().style.cursor = hit ? 'pointer' : '';
+});
+
+//////////////////////////////////////////////////////////////////
+    </script>
+  </body>
+</html>
