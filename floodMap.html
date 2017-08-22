@@ -165,7 +165,7 @@
 /////////////////////////////////////////////////////////////////////////////////////
 		
 
-		var worldPop = new ol.layer.Tile({title: 'Population(worldPop)',
+		var worldPop = new ol.layer.Tile({title: 'Population(2010 Est. by WorldPop)',
 			source: new ol.source.TileWMS ({
 				url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
 				//params:{'LAYERS':'servir:THA_pph_v2b_2010','TILED': true},
@@ -174,7 +174,7 @@
 			})		
 		})
 		
-		var HRSL2015 = new ol.layer.Tile({title: 'Population(HRSL2015)',
+		var HRSL2015 = new ol.layer.Tile({title: 'Population(2015 Est. by HRSL)',
 			source: new ol.source.TileWMS ({
 				url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
 				//params:{'LAYERS':'servir:bangkokMetroPopHRSL2015','TILED': true},
@@ -184,7 +184,7 @@
 		})
 		
 		
-		var flood2011  = new ol.layer.Tile({title: 'Flood 2011',
+		var flood2011  = new ol.layer.Tile({title: '2011 Flooded areas by GISTDA',
 			source: new ol.source.TileWMS ({
 				url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
 				params:{'LAYERS':'servir:bkkMetroFlood2011','TILED': true},
