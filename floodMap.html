@@ -75,6 +75,7 @@
 
 	
     <script src="http://rawgit.com/walkermatt/ol3-layerswitcher/master/src/ol3-layerswitcher.js" type="text/javascript"></script>
+    <script src="js/landcoverlayers.js" type="text/javascript"></script>
     <script type="text/javascript">
 		
 		var pathum = ol.proj.transform([100.6131819961167,13.81328489039565], 'EPSG:4326', 'EPSG:3857');
@@ -149,7 +150,7 @@
 				})
 				})	
 			}),
-			visible: true
+			visible: false
 		      }); 
 		      
 		 
@@ -171,8 +172,9 @@
 				//params:{'LAYERS':'servir:THA_pph_v2b_2010','TILED': true},
 				params:{'LAYERS':'servir:bkkAreaPopulationWorldPop2010','TILED': true},
 				serverType: 'geoserver'			
-			})		
 		})
+		,visible: false
+		});
 		
 		var HRSL2015 = new ol.layer.Tile({title: 'Population(2015 Est. by HRSL)',
 			source: new ol.source.TileWMS ({
@@ -181,7 +183,7 @@
 				params:{'LAYERS':'servir:bangkokMetroPopHRSL2015','TILED': true},
 				serverType: 'geoserver'			
 			})		
-		})
+		});
 		
 		
 		var flood2011  = new ol.layer.Tile({title: '2011 Flooded areas by GISTDA',
@@ -190,7 +192,7 @@
 				params:{'LAYERS':'servir:bkkMetroFlood2011','TILED': true},
 				serverType: 'geoserver'			
 			})		
-		})
+		});
 		
 	
 		
@@ -203,7 +205,9 @@
 	map.addLayer(flood2011);	
 	map.addLayer(worldPop);
 	map.addLayer(HRSL2015);
-	
+	map.addLayer(lc2016);
+	map.addLayer(lc2009);
+	map.addLayer(lc2005);
 	
 	
         var layerSwitcher = new ol.control.LayerSwitcher({
