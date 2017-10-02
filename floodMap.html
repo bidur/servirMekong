@@ -62,6 +62,9 @@
 				<option value="lc2005"> Land Cover 2005 </option>
 				<option value="lc2009"> Land Cover 2009 </option>
 				<option value="lc2016"> Land Cover 2016 </option>
+				<option value="lc2020"> Land Cover 2020 </option>
+				<option value="lc2025"> Land Cover 2025 </option>
+				<option value="lc2030"> Land Cover 2030 </option>
 				<option value="HRSL2015"> HRSL 2015</option>
 				<option value="worldPop"> WorldPop 2010 </option>
 				<option value="flood2011"> Flood 2011 </option>				
@@ -115,6 +118,9 @@
 		var valueLC2005 = 100;
 		var valueLC2009 = 100;
 		var valueLC2016 = 100;
+		var valueLC2020 = 100;
+		var valueLC2025 = 100;
+		var valueLC2030 = 100;
 		var valueFLDDPH1991 = 100;
 		
 		
@@ -175,7 +181,29 @@
 					lc2016.setVisible(true);// Layer is made visible, if its transparency is changed by slider movement		
 					showLegend(document.getElementById('lc-class')) ;// lc-class is the div ID of the legend for this layer
 			}						
-			else if (LayerName =="flddph1991")
+
+	 			else if (LayerName =="lc2020")
+			{
+					lc2020.setOpacity(sliderValue);
+					valueLC2020 = sliderValue;
+					lc2020.setVisible(true);// Layer is made visible, if its transparency is changed by slider movement		
+					showLegend(document.getElementById('lc-class')) ;// lc-class is the div ID of the legend for this layer
+			}						
+			else if (LayerName =="lc2025")
+			{
+					lc2025.setOpacity(sliderValue);
+					valueLC2025 = sliderValue;
+					lc2025.setVisible(true);// Layer is made visible, if its transparency is changed by slider movement		
+					showLegend(document.getElementById('lc-class')) ;// lc-class is the div ID of the legend for this layer
+			}						
+			else if (LayerName =="lc2030")
+			{
+					lc2030.setOpacity(sliderValue);
+					valueLC2030 = sliderValue;
+					lc2030.setVisible(true);// Layer is made visible, if its transparency is changed by slider movement		
+					showLegend(document.getElementById('lc-class')) ;// lc-class is the div ID of the legend for this layer
+			}						
+	                else if (LayerName =="flddph1991")
 			{
 					flddph1991.setOpacity(sliderValue);
 					valueFLDDPH1991 = sliderValue;
@@ -232,6 +260,24 @@
 			{
 					lc2016.setOpacity(valueLC2016);
 					slider.value = valueLC2016 *100;
+					
+			}
+			else if (LayerName =="lc2020")
+			{
+					lc2020.setOpacity(valueLC2020);
+					slider.value = valueLC2020 *100;
+					
+			}
+			else if (LayerName =="lc2025")
+			{
+					lc2025.setOpacity(valueLC2025);
+					slider.value = valueLC2025 *100;
+					
+			}
+			else if (LayerName =="lc2030")
+			{
+					lc2030.setOpacity(valueLC2030);
+					slider.value = valueLC2030 *100;
 					
 			}
 			else if (LayerName =="flddph1991")
@@ -332,10 +378,6 @@
 			}),
 			visible: false
 		      }); 
-		      
-		 
-		 
-		      
 		      
 		// MapQuest streets
 		var osmBase = new ol.layer.Tile({
@@ -482,6 +524,9 @@
 		map.addLayer(flddph1991);
 		map.addLayer(worldPop);
 		map.addLayer(HRSL2015);
+		map.addLayer(lc2020);
+		map.addLayer(lc2025);
+		map.addLayer(lc2030);
 		map.addLayer(lc2016);
 		map.addLayer(lc2009);
 		map.addLayer(lc2005);

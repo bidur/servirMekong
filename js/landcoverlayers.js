@@ -26,3 +26,33 @@ var lc2005 =
 		       })
 		       ,visible: false
 		      });
+
+var lc2020 =
+    new ol.layer.Tile({title: 'Projected Land Cover (2020)',
+		       source: new ol.source.TileWMS ({
+			   url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
+			   params:{'LAYERS':'servir:lc2020','TILED': true},
+			   serverType: 'geoserver'			
+		       })
+		       ,visible: false
+		      });
+
+var lc2025 =
+    new ol.layer.Tile({title: 'Projected Land Cover (2025)',
+		       source: new ol.source.TileWMS ({
+			   url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
+			   params:{'LAYERS':'servir:lc2025','TILED': true},
+			   serverType: 'geoserver'			
+		       })
+		       ,visible: false
+		      });
+
+var lc2030 =
+    new ol.layer.Tile({title: 'Projected Land Cover (2030)',
+		       source: new ol.source.TileWMS ({
+			   url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
+			   params:{'LAYERS':'servir:lc2030','TILED': true},
+			   serverType: 'geoserver'			
+		       })
+		       ,visible: false
+		      });
