@@ -65,11 +65,17 @@
 				<option value="lc2020"> Land Cover 2020 </option>
 				<option value="lc2025"> Land Cover 2025 </option>
 				<option value="lc2030"> Land Cover 2030 </option>
+				<option value="hpeak2011"> Modelled max flood depth Jul-Dec 2011</option>
+				<option value="exp2016"> Innudate Settlement in 2011 Flood case (2016) </option>
+				<option value="exp2020"> Innudate Settlement in 2011 Flood case (2020) </option>
+				<option value="exp2025"> Innudate Settlement in 2011 Flood case (2025) </option>
+				<option value="exp2030"> Innudate Settlement in 2011 Flood case (2030) </option>
 				<option value="HRSL2015"> HRSL 2015</option>
 				<option value="worldPop"> WorldPop 2010 </option>
-				<option value="flood2011"> Flood 2011 </option>				
+				<option value="flood2011"> Flood 2011 </option>
 				<option value="flddph1991"> Simulated flood depth (1991)</option>				
 				<option value="cities"> Provinces</option>
+
 				
 			</select>
 				<input type="range" id = "sliderID" name="slider1" value="0" min="0" max="100"/>
@@ -82,219 +88,95 @@
 	
     <div id="map" class="map" style=" top: 95px; width: 100%; height: auto; position: absolute; z-index: 1;">
 	
-		<div id="worldPop2010" style="z-index: 2; position: absolute; top: 100px; left: 20px; background-position:100px 200px; height:250px; width:500px;">
-		<b><font color="#000000">WorldPop 2010(person/100 sq.meters):</font></b><br>
+		<div id="worldPop2010" style="z-index: 2; position: absolute; top: 100px; left: 20px; background-position:100px 200px; height:250px; width:500px; display: none;">
+		<b><font color="#000000">WorldPop (person/100m^2):</font></b><br>
 		  <img src="http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?service=WMS&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=12&HEIGHT=12&LAYER=servir:bkkAreaPopulationWorldPop2010">
 		</div>
-		<div id="hrsl2010"  style="z-index: 2;  position: absolute; top: 240px; left: 20px; background-position:100px 200px; height:250px; width:500px;">
-		<b><font color="#000000">Population HRSL (person/30 sq.meters):</font></b><br>
+		<div id="hrsl2010"  style="z-index: 2;  position: absolute; top: 240px; left: 20px; background-position:100px 200px; height:250px; width:500px; display: none;">
+		<b><font color="#000000">HRSL Pop (person/30m^2):</font></b><br>
 		  <img src="http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?service=WMS&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=12&HEIGHT=12&LAYER=servir:bangkokMetroPopHRSL2015">
 		</div>
 		
-		<div id="lc-class" style="z-index: 2; position: absolute; top: 380px; left: 20px; background-position:100px 200px; height:250px; width:500px;">
+		<div id="lc-class" style="z-index: 2; position: absolute; top: 380px; left: 20px; background-position:100px 200px; height:250px; width:500px; display: none">
 		<b><font color="#000000">Land Cover:</font></b><br>
 		  <img src="http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?service=WMS&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=12&HEIGHT=12&LAYER=servir:lc2005">
 		</div>
 
-		<div id="flddph" style="z-index: 2; position: absolute; top: 520px; left: 20px; background-position:100px 200px; height:250px; width:500px;">
+		<div id="flddph" style="z-index: 2; position: absolute; top: 380px; right: 0px; background-position:100px 200px; height:70px; width:100px;">
 		<b><font color="#000000">Flood depth (m):</font></b><br>
 		  <img src="http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?service=WMS&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=12&HEIGHT=12&LAYER=servir:flddph1991">
 		</div>
-	</div>
+
+				<div id="exp" style="z-index: 2; position: absolute; top: 540px; right: 0px; background-position:100px 200px; height:42px; width:150px;">
+		<b><font color="#000000">Innudate settlements (m):</font></b><br>
+		  <img src="http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?service=WMS&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=12&HEIGHT=12&LAYER=servir:exp2030">
+		</div>
+
+    </div>
 
 	
     <script src="http://rawgit.com/walkermatt/ol3-layerswitcher/master/src/ol3-layerswitcher.js" type="text/javascript"></script>
     <script src="js/landcoverlayers.js" type="text/javascript"></script>
     <script src="js/floodLayers.js" type="text/javascript"></script>
+    <script src="js/opacitySlider.js" type="text/javascript"></script>
     <script type="text/javascript">
 	 // START: code to change transparency of layer
-
-		var $slider = $('input[name="slider1"]');
-		
-		var valueHRSL = 100;
-		var valueWorldPop = 100;
-		var valueCities = 100;
-		var valueFlood2011 = 100;
-		var valueLC2005 = 100;
-		var valueLC2009 = 100;
-		var valueLC2016 = 100;
-		var valueLC2020 = 100;
-		var valueLC2025 = 100;
-		var valueLC2030 = 100;
-		var valueFLDDPH1991 = 100;
-		
+	 var opacity = new Array(36);
+	 for(i = 0; i < 36; i++) opacity[i] = 100;
+	 var $slider = $('input[name="slider1"]');
 		
 		// change Layer transparency based on the slider movement
 		$slider.bind('change', function(e) {
-			var sliderValue = ($(this).val()/100);
 			var LayerName = getSelectedText('layerID');
-			//alert("slider moved");
-			
-			if( LayerName=="HRSL2015")
-			{
-				HRSL2015.setOpacity(sliderValue);
-				valueHRSL =  sliderValue;
-				
-				HRSL2015.setVisible(true);// Layer is made visible, if its transparency is changed by slider movement		
-				showLegend(document.getElementById('hrsl2010')) ;// hrsl2010 is the div ID of the legend for this layer              
-			}
-			else if (LayerName =="worldPop")
-			{
-					worldPop.setOpacity(sliderValue);
-					valueWorldPop = sliderValue;
-					
-					worldPop.setVisible(true);// Layer is made visible, if its transparency is changed by slider movement		
-					showLegend(document.getElementById('worldPop2010')) ;// worldPop2010 is the div ID of the legend for this layer
-			}
-			else if (LayerName =="cities")
-			{
-					cities.setOpacity(sliderValue);
-					valueCities = sliderValue;
-					cities.setVisible(true);// Layer is made visible, if its transparency is changed by slider movement					
-			}
-			else if (LayerName =="flood2011")
-			{
-					flood2011.setOpacity(sliderValue);
-					valueFlood2011 = sliderValue;
-					flood2011.setVisible(true);// Layer is made visible, if its transparency is changed by slider movement		
-			
-			}	
-			else if (LayerName =="lc2005")
-			{
-					lc2005.setOpacity(sliderValue);
-					valueLC2005 = sliderValue;
-					lc2005.setVisible(true);// Layer is made visible, if its transparency is changed by slider movement		
-					showLegend(document.getElementById('lc-class')) ;// lc-class is the div ID of the legend for this layer
-			
-			}	
-			else if (LayerName =="lc2009")
-			{
-					lc2009.setOpacity(sliderValue);
-					valueLC2009 = sliderValue;
-					lc2009.setVisible(true);// Layer is made visible, if its transparency is changed by slider movement		
-					showLegend(document.getElementById('lc-class')) ;// lc-class is the div ID of the legend for this layer
-			}	
-			else if (LayerName =="lc2016")
-			{
-					lc2016.setOpacity(sliderValue);
-					valueLC2016 = sliderValue;
-					lc2016.setVisible(true);// Layer is made visible, if its transparency is changed by slider movement		
-					showLegend(document.getElementById('lc-class')) ;// lc-class is the div ID of the legend for this layer
-			}						
-
-	 			else if (LayerName =="lc2020")
-			{
-					lc2020.setOpacity(sliderValue);
-					valueLC2020 = sliderValue;
-					lc2020.setVisible(true);// Layer is made visible, if its transparency is changed by slider movement		
-					showLegend(document.getElementById('lc-class')) ;// lc-class is the div ID of the legend for this layer
-			}						
-			else if (LayerName =="lc2025")
-			{
-					lc2025.setOpacity(sliderValue);
-					valueLC2025 = sliderValue;
-					lc2025.setVisible(true);// Layer is made visible, if its transparency is changed by slider movement		
-					showLegend(document.getElementById('lc-class')) ;// lc-class is the div ID of the legend for this layer
-			}						
-			else if (LayerName =="lc2030")
-			{
-					lc2030.setOpacity(sliderValue);
-					valueLC2030 = sliderValue;
-					lc2030.setVisible(true);// Layer is made visible, if its transparency is changed by slider movement		
-					showLegend(document.getElementById('lc-class')) ;// lc-class is the div ID of the legend for this layer
-			}						
-	                else if (LayerName =="flddph1991")
-			{
-					flddph1991.setOpacity(sliderValue);
-					valueFLDDPH1991 = sliderValue;
-					flddph1991.setVisible(true);// Layer is made visible, if its transparency is changed by slider movement		
-					showLegend(document.getElementById('flddph')) ;// lc-class is the div ID of the legend for this layer
-			}						
-			
-		});
-		
+// see js/opacitySlider.js for sliderOpacity() and sliderUpdate()
+			switch(LayerName){
+	 case "HRSL2015": opacity[0]=($(this).val()/100);sliderOpacity(HRSL2015,'hrsl2010',opacity[0]);break;
+	 case "worldPop": opacity[1]=($(this).val()/100);sliderOpacity(worldPop,'worldPop2010',opacity[1]); break;
+	 case "cities":   opacity[2]=($(this).val()/100);sliderOpacity(cities,'NA',opacity[2]); break;
+	 case "flood2011":opacity[3]=($(this).val()/100);sliderOpacity(flood2011,'NA',opacity[3]); break;
+	 case "lc2005":   opacity[4]=($(this).val()/100);sliderOpacity(lc2005,'lc-class',opacity[4]); break;
+	 case "lc2009":   opacity[5]=($(this).val()/100);sliderOpacity(lc2009,'lc-class',opacity[5]); break;
+	 case "lc2016":   opacity[6]=($(this).val()/100);sliderOpacity(lc2016,'lc-class',opacity[6]); break;
+	 case "lc2020":   opacity[7]=($(this).val()/100);sliderOpacity(lc2020,'lc-class',opacity[7]); break;
+	 case "lc2025":   opacity[8]=($(this).val()/100);sliderOpacity(lc2025,'lc-class',opacity[8]); break;
+	 case "lc2030":   opacity[9]=($(this).val()/100);sliderOpacity(lc2030,'lc-class',opacity[9]); break;
+	 case "flddph1991":opacity[10]=($(this).val()/100); sliderOpacity(flddph1991,'flddph',opacity[10]); break;
+	 case "exp2016":  opacity[11]=($(this).val()/100);sliderOpacity(exp2016,'exp',opacity[11]); break;
+	 case "exp2020":  opacity[12]=($(this).val()/100);sliderOpacity(exp2020,'exp',opacity[12]); break;
+	 case "exp2025":  opacity[13]=($(this).val()/100);sliderOpacity(exp2025,'exp',opacity[13]); break;
+	 case "exp2030":  opacity[14]=($(this).val()/100);sliderOpacity(exp2030,'exp',opacity[14]); break;
+	 case "hpeak2011":opacity[15]=($(this).val()/100); sliderOpacity(hpeak2011,'flddph',opacity[15]); break;
+	 }
+	 });
 		
 		function updateLayerTransparency()
 		{
 			var slider = document.getElementById('sliderID');
-			var LayerName = getSelectedText('layerID');
-			if( LayerName=="HRSL2015")
-			{
-				HRSL2015.setOpacity(valueHRSL);				
-				slider.value = valueHRSL *100;	
-				
-				//HRSL2015.setVisible(true); // set the layer visible if its selected for setting transparency
-								
-			}
-			else if (LayerName =="worldPop")
-			{
-					worldPop.setOpacity(valueWorldPop);
-					slider.value = valueWorldPop *100;
-					
-			}
-			else if (LayerName =="cities")
-			{
-					cities.setOpacity(valueCities);
-					slider.value = valueCities *100;
-					
-			}	
-			else if (LayerName =="flood2011")
-			{
-					flood2011.setOpacity(valueFlood2011);
-					slider.value = valueFlood2011 *100;
-					
-			}
-			else if (LayerName =="lc2005")
-			{
-					lc2005.setOpacity(valueLC2005);
-					slider.value = valueLC2005 *100;
-					
-			}
-			else if (LayerName =="lc2009")
-			{
-					lc2009.setOpacity(valueLC2009);
-					slider.value = valueLC2009 *100;
-					
-			}
-			else if (LayerName =="lc2016")
-			{
-					lc2016.setOpacity(valueLC2016);
-					slider.value = valueLC2016 *100;
-					
-			}
-			else if (LayerName =="lc2020")
-			{
-					lc2020.setOpacity(valueLC2020);
-					slider.value = valueLC2020 *100;
-					
-			}
-			else if (LayerName =="lc2025")
-			{
-					lc2025.setOpacity(valueLC2025);
-					slider.value = valueLC2025 *100;
-					
-			}
-			else if (LayerName =="lc2030")
-			{
-					lc2030.setOpacity(valueLC2030);
-					slider.value = valueLC2030 *100;
-					
-			}
-			else if (LayerName =="flddph1991")
-			{
-					flddph1991.setOpacity(valueFLDDPH1991);
-					slider.value = valueFLDDPH1991*100;
-					
-			}
-			
+	 var LayerName = getSelectedText('layerID');
+	 switch(LayerName){
+	 case "HRSL2015": sliderUpdate(HRSL2015,slider,opacity[0]); break;
+	 case "worldPop": sliderUpdate(worldPop,slider,opacity[1]); break;
+	 case "cities": sliderUpdate(cities,slider,opacity[2]); break;
+	 case "flood2011": sliderUpdate(flood2011,slider,opacity[3]); break;
+	 case "lc2005": sliderUpdate(lc2005,slider,opacity[4]); break;
+	 case "lc2009": sliderUpdate(lc2009,slider,opacity[5]); break;
+	 case "lc2016": sliderUpdate(lc2016,slider,opacity[6]); break;
+	 case "lc2020": sliderUpdate(lc2020,slider,opacity[7]); break;
+	 case "lc2025": sliderUpdate(lc2025,slider,opacity[8]); break;
+	 case "lc2030": sliderUpdate(lc2030,slider,opacity[9]); break;
+	 case "flddph1991": sliderUpdate(flddph1991,slider,opacity[10]); break;
+	 case "exp2016": sliderUpdate(exp2030,slider,opacity[11]); break;
+	 case "exp2020": sliderUpdate(exp2020,slider,opacity[12]); break;
+	 case "exp2025": sliderUpdate(exp2025,slider,opacity[13]); break;
+	 case "exp2030": sliderUpdate(exp2030,slider,opacity[14]); break;
+	 case "hpeak2011": sliderUpdate(hpeak2011,slider,opacity[15]); break;
+	 }
 		}
 
 		function getSelectedText(elementId) {
 			var elt = document.getElementById(elementId);
-
 			if (elt.selectedIndex == -1)
 				return null;
-			
 			
 			return ( elt.options[elt.selectedIndex].value);
 			
@@ -394,7 +276,8 @@
 				//params:{'LAYERS':'servir:THA_pph_v2b_2010','TILED': true},
 				params:{'LAYERS':'servir:bkkAreaPopulationWorldPop2010','TILED': true},
 				serverType: 'geoserver'			
-		})
+			})
+			,visible: false
 		});
 		
 		var HRSL2015 = new ol.layer.Tile({title: 'Population(2015 Est. by HRSL)',
@@ -413,18 +296,66 @@
 				url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
 				params:{'LAYERS':'servir:bkkMetroFlood2011','TILED': true},
 				serverType: 'geoserver'			
-			})		
+			})
+			,visible: false
 		});
-		
+
+	var hpeak2011 =
+    new ol.layer.Tile({title: 'Modelled flood depth 2011 Flood',
+		       source: new ol.source.TileWMS ({
+			   url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
+			   params:{'LAYERS':'servir:hpeak2011','TILED': true},
+			   serverType: 'geoserver'			
+		       })
+		       ,visible: false
+		      });
+
+var exp2016 =
+    new ol.layer.Tile({title: 'Innudate settlements in 2011 Flood case (2016)',
+		       source: new ol.source.TileWMS ({
+			   url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
+			   params:{'LAYERS':'servir:exp2016','TILED': true},
+			   serverType: 'geoserver'			
+		       })
+		       ,visible: false
+		      });
+
+var exp2020 =
+    new ol.layer.Tile({title: 'Innudate settlements in 2011 Flood case (2020)',
+		       source: new ol.source.TileWMS ({
+			   url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
+			   params:{'LAYERS':'servir:exp2020','TILED': true},
+			   serverType: 'geoserver'			
+		       })
+		       ,visible: false
+		      });
+
+var exp2025 =
+    new ol.layer.Tile({title: 'Innudate settlements in 2011 Flood case (2025)',
+		       source: new ol.source.TileWMS ({
+			   url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
+			   params:{'LAYERS':'servir:exp2025','TILED': true},
+			   serverType: 'geoserver'			
+		       })
+		       ,visible: false
+		      });
+
+var exp2030 =
+    new ol.layer.Tile({title: 'Innudate settlements in 2011 Flood case (2030)',
+		       source: new ol.source.TileWMS ({
+			   url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
+			   params:{'LAYERS':'servir:exp2030','TILED': true},
+			   serverType: 'geoserver'			
+		       })
+		       ,visible: false
+		      });
+
 		// register the layer so that the layer selection event is captured for toggling their corresponding Legend
 		HRSL2015.on('change:visible', function(){
-			//alert("HRSL2015");
-			showHideLegend(document.getElementById('hrsl2010')) ;
-			
+			showHideLegend(document.getElementById('hrsl2010'));		
 		});
 		
 		worldPop.on('change:visible', function(){
-			
 			showHideLegend(document.getElementById('worldPop2010')) ;
 		});
 		
@@ -507,8 +438,11 @@
 		function initializeOnFirstPageLoading(){
 			// hide  legend images for unselected layers			
 			
+			hideLegend(document.getElementById('worldPop2010')) ;
 			hideLegend(document.getElementById('hrsl2010')) ;
 			hideLegend(document.getElementById('lc-class')) ;
+			hideLegend(document.getElementById('flddpth')) ;
+			hideLegend(document.getElementById('exp')) ;
 			
 		}
 		
@@ -524,6 +458,13 @@
 		map.addLayer(flddph1991);
 		map.addLayer(worldPop);
 		map.addLayer(HRSL2015);
+			
+		map.addLayer(exp2030);
+		map.addLayer(exp2025);
+		map.addLayer(exp2020);
+		map.addLayer(exp2016);
+			
+		map.addLayer(hpeak2011);
 		map.addLayer(lc2020);
 		map.addLayer(lc2025);
 		map.addLayer(lc2030);
