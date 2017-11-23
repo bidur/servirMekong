@@ -107,7 +107,7 @@
 		  <img src="http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?service=WMS&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=12&HEIGHT=12&LAYER=servir:flddph1991">
 		</div>
 
-				<div id="exp" style="z-index: 2; position: absolute; top: 540px; right: 0px; background-position:100px 200px; height:42px; width:150px;">
+		<div id="exp" style="z-index: 2; position: absolute; top: 540px; right: 0px; background-position:100px 200px; height:42px; width:150px;">
 		<b><font color="#000000">Innudate settlements (m):</font></b><br>
 		  <img src="http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?service=WMS&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=12&HEIGHT=12&LAYER=servir:exp2030">
 		</div>
@@ -310,59 +310,175 @@
 		       ,visible: false
 		      });
 
-var exp2016 =
-    new ol.layer.Tile({title: 'Innudate settlements in 2011 Flood case (2016)',
-		       source: new ol.source.TileWMS ({
-			   url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
-			   params:{'LAYERS':'servir:exp2016','TILED': true},
-			   serverType: 'geoserver'			
-		       })
-		       ,visible: false
-		      });
+	var exp2016 =
+		new ol.layer.Tile({title: 'Innudate settlements in 2011 Flood case (2016)',
+				   source: new ol.source.TileWMS ({
+				   url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
+				   params:{'LAYERS':'servir:exp2016','TILED': true},
+				   serverType: 'geoserver'			
+				   })
+				   ,visible: false
+				  });
 
-var exp2020 =
-    new ol.layer.Tile({title: 'Innudate settlements in 2011 Flood case (2020)',
-		       source: new ol.source.TileWMS ({
-			   url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
-			   params:{'LAYERS':'servir:exp2020','TILED': true},
-			   serverType: 'geoserver'			
-		       })
-		       ,visible: false
-		      });
+	var exp2020 =
+		new ol.layer.Tile({title: 'Innudate settlements in 2011 Flood case (2020)',
+				   source: new ol.source.TileWMS ({
+				   url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
+				   params:{'LAYERS':'servir:exp2020','TILED': true},
+				   serverType: 'geoserver'			
+				   })
+				   ,visible: false
+				  });
 
-var exp2025 =
-    new ol.layer.Tile({title: 'Innudate settlements in 2011 Flood case (2025)',
-		       source: new ol.source.TileWMS ({
-			   url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
-			   params:{'LAYERS':'servir:exp2025','TILED': true},
-			   serverType: 'geoserver'			
-		       })
-		       ,visible: false
-		      });
+	var exp2025 =
+		new ol.layer.Tile({title: 'Innudate settlements in 2011 Flood case (2025)',
+				   source: new ol.source.TileWMS ({
+				   url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
+				   params:{'LAYERS':'servir:exp2025','TILED': true},
+				   serverType: 'geoserver'			
+				   })
+				   ,visible: false
+				  });
 
-var exp2030 =
-    new ol.layer.Tile({title: 'Innudate settlements in 2011 Flood case (2030)',
-		       source: new ol.source.TileWMS ({
-			   url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
-			   params:{'LAYERS':'servir:exp2030','TILED': true},
-			   serverType: 'geoserver'			
-		       })
-		       ,visible: false
-		      });
+	var exp2030 =
+		new ol.layer.Tile({title: 'Innudate settlements in 2011 Flood case (2030)',
+				   source: new ol.source.TileWMS ({
+				   url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
+				   params:{'LAYERS':'servir:exp2030','TILED': true},
+				   serverType: 'geoserver'			
+				   })
+				   ,visible: false
+				  });
 
 		// register the layer so that the layer selection event is captured for toggling their corresponding Legend
 		HRSL2015.on('change:visible', function(){
 			showHideLegend(document.getElementById('hrsl2010'));		
 		});
 		
+		//divID 'flddph' needs to be visible if any of the two flood height layers( i.e. flddph1991, hpeak2011) are visible
+		
+		var flddph1991Visible = 0;
+		var hpeak2011Visible = 0;
+		
+		hpeak2011.on('change:visible', function(){
+			
+			if (hpeak2011Visible != 1){
+				hpeak2011Visible = 1;
+			}	
+			else{
+				hpeak2011Visible = 0;
+			}
+			
+			
+			showHideLegend4FloodHeights(document.getElementById('flddph'));	
+				
+		});
+		
+		flddph1991.on('change:visible', function(){
+			
+			if (flddph1991Visible != 1){
+				flddph1991Visible = 1;
+			}	
+			else{
+				flddph1991Visible = 0;
+			}
+			showHideLegend4FloodHeights(document.getElementById('flddph'));		
+			
+		});
+		
+		
+		function showHideLegend4FloodHeights(divID) { // toggle layer specific legend based on the selection of the corresponding layer
+			
+			if( (flddph1991Visible == 1) || (hpeak2011Visible ==1)  ){
+				divID.style.display = 'block';
+			}
+			else{
+				divID.style.display = 'none';
+			}			
+		}
+		
+		
+		
+		
+		
+		
+		
+		//divID 'exp' needs to be visible if any of the four innudate settlement layers  are visible
+		var innudate2016Visible = 0;
+		var innudate2020Visible = 0;
+		var innudate2025Visible = 0;
+		var innudate2030Visible = 0;
+		
+		exp2030.on('change:visible', function(){
+			
+			if (innudate2030Visible != 1){
+				innudate2030Visible = 1;
+			}	
+			else{
+				innudate2030Visible = 0;
+			}
+			showHideLegend4Innudate(document.getElementById('exp'));		
+		});
+		
+		exp2025.on('change:visible', function(){
+			
+			if (innudate2025Visible != 1){
+				innudate2025Visible = 1;
+			}	
+			else{
+				innudate2025Visible = 0;
+			}
+			showHideLegend4Innudate(document.getElementById('exp'));		
+		});
+		
+		exp2020.on('change:visible', function(){
+			
+			if (innudate2020Visible != 1){
+				innudate2020Visible = 1;
+			}	
+			else{
+				innudate2020Visible = 0;
+			}
+			showHideLegend4Innudate(document.getElementById('exp'));		
+		});
+		
+		exp2016.on('change:visible', function(){
+			
+			if (innudate2016Visible != 1){
+				innudate2016Visible = 1;
+			}	
+			else{
+				innudate2016Visible = 0;
+			}
+			showHideLegend4Innudate(document.getElementById('exp'));		
+		});
+		
+		
+		
+		function showHideLegend4Innudate(divID) { // toggle layer specific legend based on the selection of the corresponding layer
+			
+			if( (innudate2016Visible == 1) || (innudate2020Visible ==1) || (innudate2025Visible ==1) || (innudate2030Visible ==1)  ){
+				divID.style.display = 'block';
+			}
+			else{
+				divID.style.display = 'none';
+			}			
+		}
+		
+		
+		
+		
 		worldPop.on('change:visible', function(){
 			showHideLegend(document.getElementById('worldPop2010')) ;
 		});
 		
-		// lc-class needs to be visible if any of the three LC layer are visible
+		// divID 'lc-class' needs to be visible if any of the six LC layer are visible
 		var lc2016Visible = 0;
 		var lc2009Visible = 0;
 		var lc2005Visible = 0;
+		var lc2020Visible = 0;
+		var lc2025Visible = 0;
+		var lc2030Visible = 0;
 		
 		lc2016.on('change:visible', function(){		
 			
@@ -371,6 +487,42 @@ var exp2030 =
 			}	
 			else{
 				lc2016Visible = 0;
+			}
+			
+			showHideLegend4LC(document.getElementById('lc-class')) ;
+		});
+		
+		lc2030.on('change:visible', function(){		
+			
+			if (lc2030Visible != 1){
+				lc2030Visible = 1;
+			}	
+			else{
+				lc2030Visible = 0;
+			}
+			
+			showHideLegend4LC(document.getElementById('lc-class')) ;
+		});
+		
+		lc2025.on('change:visible', function(){		
+			
+			if (lc2025Visible != 1){
+				lc2025Visible = 1;
+			}	
+			else{
+				lc2025Visible = 0;
+			}
+			
+			showHideLegend4LC(document.getElementById('lc-class')) ;
+		});
+		
+		lc2020.on('change:visible', function(){		
+			
+			if (lc2020Visible != 1){
+				lc2020Visible = 1;
+			}	
+			else{
+				lc2020Visible = 0;
 			}
 			
 			showHideLegend4LC(document.getElementById('lc-class')) ;
@@ -399,13 +551,15 @@ var exp2030 =
 		
 		function showHideLegend4LC(divID) { // toggle layer specific legend based on the selection of the corresponding layer
 			
-			if( (lc2005Visible == 1) || (lc2009Visible ==1) || (lc2016Visible==1)){
+			if( (lc2005Visible == 1) || (lc2009Visible ==1) || (lc2016Visible==1) || (lc2020Visible==1) || (lc2025Visible==1) || (lc2030Visible==1) ){
 				divID.style.display = 'block';
 			}
 			else{
 				divID.style.display = 'none';
 			}			
 		}
+		
+		
 		
 		function showHideLegend(divID) { // toggle layer specific legend based on the selection of the corresponding layer
 			//var x = document.getElementById('myDIV');
@@ -441,11 +595,11 @@ var exp2030 =
 			hideLegend(document.getElementById('worldPop2010')) ;
 			hideLegend(document.getElementById('hrsl2010')) ;
 			hideLegend(document.getElementById('lc-class')) ;
-			hideLegend(document.getElementById('flddpth')) ;
+			hideLegend(document.getElementById('flddph')) ;
 			hideLegend(document.getElementById('exp')) ;
 			
 		}
-		
+	
 		
 		function hideLegend(divID){			
 			divID.style.display = 'none';
