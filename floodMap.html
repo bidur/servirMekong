@@ -90,26 +90,26 @@
 	
 		<div id="worldPop2010" style="z-index: 2; position: absolute; top: 100px; left: 20px; background-position:100px 200px; height:250px; width:500px; display: none;">
 		<b><font color="#000000">WorldPop (person/100m^2):</font></b><br>
-		  <img src="http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?service=WMS&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=12&HEIGHT=12&LAYER=servir:bkkAreaPopulationWorldPop2010">
+		  <img src="http://guam.csis.u-tokyo.ac.jp:8081/geoserver/servir/wms?service=WMS&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=12&HEIGHT=12&LAYER=servir:bkkAreaPopulationWorldPop2010">
 		</div>
 		<div id="hrsl2010"  style="z-index: 2;  position: absolute; top: 240px; left: 20px; background-position:100px 200px; height:250px; width:500px; display: none;">
 		<b><font color="#000000">HRSL Pop (person/30m^2):</font></b><br>
-		  <img src="http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?service=WMS&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=12&HEIGHT=12&LAYER=servir:bangkokMetroPopHRSL2015">
+		  <img src="http://guam.csis.u-tokyo.ac.jp:8081/geoserver/servir/wms?service=WMS&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=12&HEIGHT=12&LAYER=servir:bangkokMetroPopHRSL2015">
 		</div>
 		
 		<div id="lc-class" style="z-index: 2; position: absolute; top: 380px; left: 20px; background-position:100px 200px; height:250px; width:500px; display: none">
 		<b><font color="#000000">Land Cover:</font></b><br>
-		  <img src="http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?service=WMS&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=12&HEIGHT=12&LAYER=servir:lc2005">
+		  <img src="http://guam.csis.u-tokyo.ac.jp:8081/geoserver/servir/wms?service=WMS&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=12&HEIGHT=12&LAYER=servir:lc2005">
 		</div>
 
 		<div id="flddph" style="z-index: 2; position: absolute; top: 380px; right: 0px; background-position:100px 200px; height:70px; width:100px;">
 		<b><font color="#000000">Flood depth (m):</font></b><br>
-		  <img src="http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?service=WMS&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=12&HEIGHT=12&LAYER=servir:flddph1991">
+		  <img src="http://guam.csis.u-tokyo.ac.jp:8081/geoserver/servir/wms?service=WMS&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=12&HEIGHT=12&LAYER=servir:flddph1991">
 		</div>
 
 		<div id="exp" style="z-index: 2; position: absolute; top: 540px; right: 0px; background-position:100px 200px; height:42px; width:150px;">
 		<b><font color="#000000">Innudate settlements (m):</font></b><br>
-		  <img src="http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?service=WMS&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=12&HEIGHT=12&LAYER=servir:exp2030">
+		  <img src="http://guam.csis.u-tokyo.ac.jp:8081/geoserver/servir/wms?service=WMS&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=12&HEIGHT=12&LAYER=servir:exp2030">
 		</div>
 
     </div>
@@ -130,47 +130,47 @@
 			var LayerName = getSelectedText('layerID');
 // see js/opacitySlider.js for sliderOpacity() and sliderUpdate()
 			switch(LayerName){
-	 case "HRSL2015": opacity[0]=($(this).val()/100);sliderOpacity(HRSL2015,'hrsl2010',opacity[0]);break;
-	 case "worldPop": opacity[1]=($(this).val()/100);sliderOpacity(worldPop,'worldPop2010',opacity[1]); break;
-	 case "cities":   opacity[2]=($(this).val()/100);sliderOpacity(cities,'NA',opacity[2]); break;
-	 case "flood2011":opacity[3]=($(this).val()/100);sliderOpacity(flood2011,'NA',opacity[3]); break;
-	 case "lc2005":   opacity[4]=($(this).val()/100);sliderOpacity(lc2005,'lc-class',opacity[4]); break;
-	 case "lc2009":   opacity[5]=($(this).val()/100);sliderOpacity(lc2009,'lc-class',opacity[5]); break;
-	 case "lc2016":   opacity[6]=($(this).val()/100);sliderOpacity(lc2016,'lc-class',opacity[6]); break;
-	 case "lc2020":   opacity[7]=($(this).val()/100);sliderOpacity(lc2020,'lc-class',opacity[7]); break;
-	 case "lc2025":   opacity[8]=($(this).val()/100);sliderOpacity(lc2025,'lc-class',opacity[8]); break;
-	 case "lc2030":   opacity[9]=($(this).val()/100);sliderOpacity(lc2030,'lc-class',opacity[9]); break;
-	 case "flddph1991":opacity[10]=($(this).val()/100); sliderOpacity(flddph1991,'flddph',opacity[10]); break;
-	 case "exp2016":  opacity[11]=($(this).val()/100);sliderOpacity(exp2016,'exp',opacity[11]); break;
-	 case "exp2020":  opacity[12]=($(this).val()/100);sliderOpacity(exp2020,'exp',opacity[12]); break;
-	 case "exp2025":  opacity[13]=($(this).val()/100);sliderOpacity(exp2025,'exp',opacity[13]); break;
-	 case "exp2030":  opacity[14]=($(this).val()/100);sliderOpacity(exp2030,'exp',opacity[14]); break;
-	 case "hpeak2011":opacity[15]=($(this).val()/100); sliderOpacity(hpeak2011,'flddph',opacity[15]); break;
-	 }
+				 case "HRSL2015": opacity[0]=($(this).val()/100);sliderOpacity(HRSL2015,'hrsl2010',opacity[0]);break;
+				 case "worldPop": opacity[1]=($(this).val()/100);sliderOpacity(worldPop,'worldPop2010',opacity[1]); break;
+				 case "cities":   opacity[2]=($(this).val()/100);sliderOpacity(cities,'NA',opacity[2]); break;
+				 case "flood2011":opacity[3]=($(this).val()/100);sliderOpacity(flood2011,'NA',opacity[3]); break;
+				 case "lc2005":   opacity[4]=($(this).val()/100);sliderOpacity(lc2005,'lc-class',opacity[4]); break;
+				 case "lc2009":   opacity[5]=($(this).val()/100);sliderOpacity(lc2009,'lc-class',opacity[5]); break;
+				 case "lc2016":   opacity[6]=($(this).val()/100);sliderOpacity(lc2016,'lc-class',opacity[6]); break;
+				 case "lc2020":   opacity[7]=($(this).val()/100);sliderOpacity(lc2020,'lc-class',opacity[7]); break;
+				 case "lc2025":   opacity[8]=($(this).val()/100);sliderOpacity(lc2025,'lc-class',opacity[8]); break;
+				 case "lc2030":   opacity[9]=($(this).val()/100);sliderOpacity(lc2030,'lc-class',opacity[9]); break;
+				 case "flddph1991":opacity[10]=($(this).val()/100); sliderOpacity(flddph1991,'flddph',opacity[10]); break;
+				 case "exp2016":  opacity[11]=($(this).val()/100);sliderOpacity(exp2016,'exp',opacity[11]); break;
+				 case "exp2020":  opacity[12]=($(this).val()/100);sliderOpacity(exp2020,'exp',opacity[12]); break;
+				 case "exp2025":  opacity[13]=($(this).val()/100);sliderOpacity(exp2025,'exp',opacity[13]); break;
+				 case "exp2030":  opacity[14]=($(this).val()/100);sliderOpacity(exp2030,'exp',opacity[14]); break;
+				 case "hpeak2011":opacity[15]=($(this).val()/100); sliderOpacity(hpeak2011,'flddph',opacity[15]); break;
+				 }
 	 });
 		
 		function updateLayerTransparency()
 		{
-			var slider = document.getElementById('sliderID');
-	 var LayerName = getSelectedText('layerID');
-	 switch(LayerName){
-	 case "HRSL2015": sliderUpdate(HRSL2015,slider,opacity[0]); break;
-	 case "worldPop": sliderUpdate(worldPop,slider,opacity[1]); break;
-	 case "cities": sliderUpdate(cities,slider,opacity[2]); break;
-	 case "flood2011": sliderUpdate(flood2011,slider,opacity[3]); break;
-	 case "lc2005": sliderUpdate(lc2005,slider,opacity[4]); break;
-	 case "lc2009": sliderUpdate(lc2009,slider,opacity[5]); break;
-	 case "lc2016": sliderUpdate(lc2016,slider,opacity[6]); break;
-	 case "lc2020": sliderUpdate(lc2020,slider,opacity[7]); break;
-	 case "lc2025": sliderUpdate(lc2025,slider,opacity[8]); break;
-	 case "lc2030": sliderUpdate(lc2030,slider,opacity[9]); break;
-	 case "flddph1991": sliderUpdate(flddph1991,slider,opacity[10]); break;
-	 case "exp2016": sliderUpdate(exp2030,slider,opacity[11]); break;
-	 case "exp2020": sliderUpdate(exp2020,slider,opacity[12]); break;
-	 case "exp2025": sliderUpdate(exp2025,slider,opacity[13]); break;
-	 case "exp2030": sliderUpdate(exp2030,slider,opacity[14]); break;
-	 case "hpeak2011": sliderUpdate(hpeak2011,slider,opacity[15]); break;
-	 }
+			 var slider = document.getElementById('sliderID');
+			 var LayerName = getSelectedText('layerID');
+			 switch(LayerName){
+			 case "HRSL2015": sliderUpdate(HRSL2015,slider,opacity[0],'hrsl2010'); break;
+			 case "worldPop": sliderUpdate(worldPop,slider,opacity[1],'worldPop2010'); break;
+			 case "cities": sliderUpdate(cities,slider,opacity[2],'NA'); break;
+			 case "flood2011": sliderUpdate(flood2011,slider,opacity[3],'NA'); break;
+			 case "lc2005": sliderUpdate(lc2005,slider,opacity[4],'lc-class'); break;
+			 case "lc2009": sliderUpdate(lc2009,slider,opacity[5],'lc-class'); break;
+			 case "lc2016": sliderUpdate(lc2016,slider,opacity[6],'lc-class'); break;
+			 case "lc2020": sliderUpdate(lc2020,slider,opacity[7],'lc-class'); break;
+			 case "lc2025": sliderUpdate(lc2025,slider,opacity[8],'lc-class'); break;
+			 case "lc2030": sliderUpdate(lc2030,slider,opacity[9],'lc-class'); break;
+			 case "flddph1991": sliderUpdate(flddph1991,slider,opacity[10],'flddph'); flddph1991Visible =1; break;
+			 case "exp2016": sliderUpdate(exp2030,slider,opacity[11],'exp'); innudate2016Visible = 1; break;
+			 case "exp2020": sliderUpdate(exp2020,slider,opacity[12],'exp'); innudate2020Visible = 1; break;
+			 case "exp2025": sliderUpdate(exp2025,slider,opacity[13],'exp');  innudate2025Visible = 1;break;
+			 case "exp2030": sliderUpdate(exp2030,slider,opacity[14],'exp');  innudate2030Visible = 1; break;
+			 case "hpeak2011": sliderUpdate(hpeak2011,slider,opacity[15],'flddph'); hpeak2011Visible=1; break;
+			 }
 		}
 
 		function getSelectedText(elementId) {
@@ -232,6 +232,7 @@
       }
 	
 /////////////////////////////////////////////////////////////////////////////////////	
+// LAYER DEFINITION START
 
 		var cities = new ol.layer.Vector({
 			title: 'Provinces',
@@ -272,7 +273,7 @@
 
 		var worldPop = new ol.layer.Tile({title: 'Population(2010 Est. by WorldPop)',
 			source: new ol.source.TileWMS ({
-				url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
+				url: 'http://guam.csis.u-tokyo.ac.jp:8081/geoserver/servir/wms?',
 				//params:{'LAYERS':'servir:THA_pph_v2b_2010','TILED': true},
 				params:{'LAYERS':'servir:bkkAreaPopulationWorldPop2010','TILED': true},
 				serverType: 'geoserver'			
@@ -282,7 +283,7 @@
 		
 		var HRSL2015 = new ol.layer.Tile({title: 'Population(2015 Est. by HRSL)',
 			source: new ol.source.TileWMS ({
-				url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
+				url: 'http://guam.csis.u-tokyo.ac.jp:8081/geoserver/servir/wms?',
 				//params:{'LAYERS':'servir:bangkokMetroPopHRSL2015','TILED': true},
 				params:{'LAYERS':'servir:bangkokMetroPopHRSL2015','TILED': true},
 				serverType: 'geoserver'			
@@ -293,7 +294,7 @@
 		
 		var flood2011  = new ol.layer.Tile({title: '2011 Flooded areas by GISTDA',
 			source: new ol.source.TileWMS ({
-				url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
+				url: 'http://guam.csis.u-tokyo.ac.jp:8081/geoserver/servir/wms?',
 				params:{'LAYERS':'servir:bkkMetroFlood2011','TILED': true},
 				serverType: 'geoserver'			
 			})
@@ -303,17 +304,29 @@
 	var hpeak2011 =
     new ol.layer.Tile({title: 'Modelled flood depth 2011 Flood',
 		       source: new ol.source.TileWMS ({
-			   url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
+			   url: 'http://guam.csis.u-tokyo.ac.jp:8081/geoserver/servir/wms?',
 			   params:{'LAYERS':'servir:hpeak2011','TILED': true},
 			   serverType: 'geoserver'			
 		       })
 		       ,visible: false
 		      });
 
+var flddph1991 =
+    new ol.layer.Tile({title: 'Simulated flood depth (1991)',
+		       source: new ol.source.TileWMS ({
+			   url: 'http://guam.csis.u-tokyo.ac.jp:8081/geoserver/servir/wms?',
+			   params:{'LAYERS':'servir:flddph1991','TILED': true},
+			   serverType: 'geoserver'			
+		       })
+		       ,visible: false
+		      });
+
+
+
 	var exp2016 =
 		new ol.layer.Tile({title: 'Innudate settlements in 2011 Flood case (2016)',
 				   source: new ol.source.TileWMS ({
-				   url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
+				   url: 'http://guam.csis.u-tokyo.ac.jp:8081/geoserver/servir/wms?',
 				   params:{'LAYERS':'servir:exp2016','TILED': true},
 				   serverType: 'geoserver'			
 				   })
@@ -323,7 +336,7 @@
 	var exp2020 =
 		new ol.layer.Tile({title: 'Innudate settlements in 2011 Flood case (2020)',
 				   source: new ol.source.TileWMS ({
-				   url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
+				   url: 'http://guam.csis.u-tokyo.ac.jp:8081/geoserver/servir/wms?',
 				   params:{'LAYERS':'servir:exp2020','TILED': true},
 				   serverType: 'geoserver'			
 				   })
@@ -333,7 +346,7 @@
 	var exp2025 =
 		new ol.layer.Tile({title: 'Innudate settlements in 2011 Flood case (2025)',
 				   source: new ol.source.TileWMS ({
-				   url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
+				   url: 'http://guam.csis.u-tokyo.ac.jp:8081/geoserver/servir/wms?',
 				   params:{'LAYERS':'servir:exp2025','TILED': true},
 				   serverType: 'geoserver'			
 				   })
@@ -343,12 +356,15 @@
 	var exp2030 =
 		new ol.layer.Tile({title: 'Innudate settlements in 2011 Flood case (2030)',
 				   source: new ol.source.TileWMS ({
-				   url: 'http://guam.csis.u-tokyo.ac.jp:8080/geoserver/servir/wms?',
+				   url: 'http://guam.csis.u-tokyo.ac.jp:8081/geoserver/servir/wms?',
 				   params:{'LAYERS':'servir:exp2030','TILED': true},
 				   serverType: 'geoserver'			
 				   })
 				   ,visible: false
 				  });
+// LAYER DEFINITION END
+
+
 
 		// register the layer so that the layer selection event is captured for toggling their corresponding Legend
 		HRSL2015.on('change:visible', function(){
@@ -362,44 +378,52 @@
 		
 		hpeak2011.on('change:visible', function(){
 			
+			//var legendVisibleFlag = 0;
+			
 			if (hpeak2011Visible != 1){
 				hpeak2011Visible = 1;
+					
 			}	
 			else{
 				hpeak2011Visible = 0;
 			}
 			
-			
-			showHideLegend4FloodHeights(document.getElementById('flddph'));	
+			if ((hpeak2011Visible==1) || (flddph1991Visible==1)){
+				showLegend(document.getElementById('flddph'));
+				//alert('show');
+			}
+			else{
+				hideLegend(document.getElementById('flddph'));
+				//alert('hide');
+				
+			}	
 				
 		});
 		
 		flddph1991.on('change:visible', function(){
 			
+			//var legendVisibleFlag = 0;
+			
 			if (flddph1991Visible != 1){
 				flddph1991Visible = 1;
+				
 			}	
 			else{
 				flddph1991Visible = 0;
 			}
-			showHideLegend4FloodHeights(document.getElementById('flddph'));		
 			
-		});
-		
-		
-		function showHideLegend4FloodHeights(divID) { // toggle layer specific legend based on the selection of the corresponding layer
-			
-			if( (flddph1991Visible == 1) || (hpeak2011Visible ==1)  ){
-				divID.style.display = 'block';
+			if ((hpeak2011Visible==1) || (flddph1991Visible==1)){
+				showLegend(document.getElementById('flddph'));
+				//alert('show');
 			}
 			else{
-				divID.style.display = 'none';
+				hideLegend(document.getElementById('flddph'));
+				//alert('hide');
+				
 			}			
-		}
+		});
 		
-		
-		
-		
+
 		
 		
 		
@@ -417,7 +441,17 @@
 			else{
 				innudate2030Visible = 0;
 			}
-			showHideLegend4Innudate(document.getElementById('exp'));		
+			
+			if ((innudate2016Visible==1) || (innudate2020Visible==1) || (innudate2025Visible==1) || (innudate2030Visible==1) ){
+				showLegend(document.getElementById('exp'));
+				//alert('show');
+			}
+			else{
+				hideLegend(document.getElementById('exp'));
+				//alert('hide');
+				
+			}
+			//showHideLegend4Innudate(document.getElementById('exp'));		
 		});
 		
 		exp2025.on('change:visible', function(){
@@ -428,7 +462,16 @@
 			else{
 				innudate2025Visible = 0;
 			}
-			showHideLegend4Innudate(document.getElementById('exp'));		
+			if ((innudate2016Visible==1) || (innudate2020Visible==1) || (innudate2025Visible==1) || (innudate2030Visible==1) ){
+				showLegend(document.getElementById('exp'));
+				//alert('show');
+			}
+			else{
+				hideLegend(document.getElementById('exp'));
+				//alert('hide');
+				
+			}
+			//showHideLegend4Innudate(document.getElementById('exp'));			
 		});
 		
 		exp2020.on('change:visible', function(){
@@ -439,7 +482,16 @@
 			else{
 				innudate2020Visible = 0;
 			}
-			showHideLegend4Innudate(document.getElementById('exp'));		
+			if ((innudate2016Visible==1) || (innudate2020Visible==1) || (innudate2025Visible==1) || (innudate2030Visible==1) ){
+				showLegend(document.getElementById('exp'));
+				//alert('show');
+			}
+			else{
+				hideLegend(document.getElementById('exp'));
+				//alert('hide');
+				
+			}
+			//showHideLegend4Innudate(document.getElementById('exp'));		
 		});
 		
 		exp2016.on('change:visible', function(){
@@ -450,10 +502,19 @@
 			else{
 				innudate2016Visible = 0;
 			}
-			showHideLegend4Innudate(document.getElementById('exp'));		
+			if ((innudate2016Visible==1) || (innudate2020Visible==1) || (innudate2025Visible==1) || (innudate2030Visible==1) ){
+				showLegend(document.getElementById('exp'));
+				//alert('show');
+			}
+			else{
+				hideLegend(document.getElementById('exp'));
+				//alert('hide');
+				
+			}
+			//showHideLegend4Innudate(document.getElementById('exp'));	
 		});
 		
-		
+		/*
 		
 		function showHideLegend4Innudate(divID) { // toggle layer specific legend based on the selection of the corresponding layer
 			
@@ -465,7 +526,7 @@
 			}			
 		}
 		
-		
+		*/
 		
 		
 		worldPop.on('change:visible', function(){
@@ -489,7 +550,17 @@
 				lc2016Visible = 0;
 			}
 			
-			showHideLegend4LC(document.getElementById('lc-class')) ;
+			if( (lc2005Visible == 1) || (lc2009Visible ==1) || (lc2016Visible==1) || (lc2020Visible==1) || (lc2025Visible==1) || (lc2030Visible==1) ){
+				showLegend(document.getElementById('lc-class'));
+				//alert('show');
+			}
+			else{
+				hideLegend(document.getElementById('lc-class'));
+				//alert('hide');
+				
+			}
+			
+			//showHideLegend4LC(document.getElementById('lc-class')) ;
 		});
 		
 		lc2030.on('change:visible', function(){		
@@ -501,7 +572,17 @@
 				lc2030Visible = 0;
 			}
 			
-			showHideLegend4LC(document.getElementById('lc-class')) ;
+			if( (lc2005Visible == 1) || (lc2009Visible ==1) || (lc2016Visible==1) || (lc2020Visible==1) || (lc2025Visible==1) || (lc2030Visible==1) ){
+				showLegend(document.getElementById('lc-class'));
+				//alert('show');
+			}
+			else{
+				hideLegend(document.getElementById('lc-class'));
+				//alert('hide');
+				
+			}
+			
+			//showHideLegend4LC(document.getElementById('lc-class')) ;
 		});
 		
 		lc2025.on('change:visible', function(){		
@@ -513,7 +594,17 @@
 				lc2025Visible = 0;
 			}
 			
-			showHideLegend4LC(document.getElementById('lc-class')) ;
+			if( (lc2005Visible == 1) || (lc2009Visible ==1) || (lc2016Visible==1) || (lc2020Visible==1) || (lc2025Visible==1) || (lc2030Visible==1) ){
+				showLegend(document.getElementById('lc-class'));
+				//alert('show');
+			}
+			else{
+				hideLegend(document.getElementById('lc-class'));
+				//alert('hide');
+				
+			}
+			
+			//showHideLegend4LC(document.getElementById('lc-class')) ;
 		});
 		
 		lc2020.on('change:visible', function(){		
@@ -525,7 +616,17 @@
 				lc2020Visible = 0;
 			}
 			
-			showHideLegend4LC(document.getElementById('lc-class')) ;
+			if( (lc2005Visible == 1) || (lc2009Visible ==1) || (lc2016Visible==1) || (lc2020Visible==1) || (lc2025Visible==1) || (lc2030Visible==1) ){
+				showLegend(document.getElementById('lc-class'));
+				//alert('show');
+			}
+			else{
+				hideLegend(document.getElementById('lc-class'));
+				//alert('hide');
+				
+			}
+			
+			//showHideLegend4LC(document.getElementById('lc-class')) ;
 		});
 		
 		lc2009.on('change:visible', function(){			
@@ -535,7 +636,17 @@
 			else{
 				lc2009Visible = 0;
 			}
-			showHideLegend4LC(document.getElementById('lc-class')) ;
+			if( (lc2005Visible == 1) || (lc2009Visible ==1) || (lc2016Visible==1) || (lc2020Visible==1) || (lc2025Visible==1) || (lc2030Visible==1) ){
+				showLegend(document.getElementById('lc-class'));
+				//alert('show');
+			}
+			else{
+				hideLegend(document.getElementById('lc-class'));
+				//alert('hide');
+				
+			}
+			
+			//showHideLegend4LC(document.getElementById('lc-class')) ;
 		});
 		
 		lc2005.on('change:visible', function(){			
@@ -545,10 +656,20 @@
 			else{
 				lc2005Visible = 0;
 			}
-			showHideLegend4LC(document.getElementById('lc-class')) ;
+			if( (lc2005Visible == 1) || (lc2009Visible ==1) || (lc2016Visible==1) || (lc2020Visible==1) || (lc2025Visible==1) || (lc2030Visible==1) ){
+				showLegend(document.getElementById('lc-class'));
+				//alert('show');
+			}
+			else{
+				hideLegend(document.getElementById('lc-class'));
+				//alert('hide');
+				
+			}
+			
+			//showHideLegend4LC(document.getElementById('lc-class')) ;
 		});
 		
-		
+		/*
 		function showHideLegend4LC(divID) { // toggle layer specific legend based on the selection of the corresponding layer
 			
 			if( (lc2005Visible == 1) || (lc2009Visible ==1) || (lc2016Visible==1) || (lc2020Visible==1) || (lc2025Visible==1) || (lc2030Visible==1) ){
@@ -559,7 +680,7 @@
 			}			
 		}
 		
-		
+		*/
 		
 		function showHideLegend(divID) { // toggle layer specific legend based on the selection of the corresponding layer
 			//var x = document.getElementById('myDIV');
