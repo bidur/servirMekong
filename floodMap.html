@@ -54,8 +54,15 @@
 				</nav>
 			</header>
 			
-	<div style=" top: 55px; width: 100%; height: 30px; position: absolute; z-index: 1; text-align: center;">
+	<div style=" top: 59px; width: 100%; height: 30px; position: absolute; z-index: 1; text-align: center;">
+		
+		
 		<div name ="sliderDIV" id="sliderDIV">
+		
+			
+			<input type="button" value = "Reset Layers" onclick="history.go(0)"   style="background-color: #e7e7e7; color: red;font-weight:bold;font-size:12pt;"  background-color: #FFFFC0; />
+			
+			
 			<b>Change Transparency of Selected Layer: </b>
 			<select id="layerID" onchange="updateLayerTransparency()">
 				<option value=""> Choose Layer </option>
@@ -75,10 +82,10 @@
 				<option value="flood2011"> Flood 2011 </option>
 				<option value="flddph1991"> Simulated flood depth (1991)</option>				
 				<option value="cities"> Provinces</option>
-
 				
 			</select>
-				<input type="range" id = "sliderID" name="slider1" value="0" min="0" max="100"/>
+			<input type="range" id = "sliderID" name="slider1" value="0" min="0" max="100"/>
+					
 
 		</div>
 	</div>
@@ -86,7 +93,7 @@
 	<div class="container-fluid">
     <div class="row-fluid">
 	
-    <div id="map" class="map" style=" top: 95px; width: 100%; height: auto; position: absolute; z-index: 1;">
+    <div id="map" class="map" style=" top: 92px; width: 100%; height: auto; position: absolute; z-index: 1;">
 	
 		<div id="worldPop2010" style="z-index: 2; position: absolute; top: 100px; left: 20px; background-position:100px 200px; height:250px; width:500px; display: none;">
 		<b><font color="#000000">WorldPop (person/100m^2):</font></b><br>
@@ -310,8 +317,6 @@
 		       })
 		       ,visible: false
 		      });
-
-// URL port updated from 8080 to 8081 i.e. http://guam.csis.u-tokyo.ac.jp:8081/geoserver/
 
 var flddph1991 =
     new ol.layer.Tile({title: 'Simulated flood depth (1991)',
