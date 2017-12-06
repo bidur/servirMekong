@@ -60,7 +60,7 @@
 		<div name ="sliderDIV" id="sliderDIV">
 		
 			
-			<input type="button" value = "Reset Layers" onclick="history.go(0)"   style="background-color: #e7e7e7; color: red;font-weight:bold;font-size:12pt;"  background-color: #FFFFC0; />
+			<input type="button" value = "Reset Layers" onclick="history.go(0)"   style="background-color: #e7e7e7;font-weight:bold;font-size:12pt;"  background-color: #FFFFC0; />
 			
 			
 			<b>Change Transparency of Selected Layer: </b>
@@ -116,7 +116,7 @@
 
 		<div id="exp" style="z-index: 2; position: absolute; top: 540px; right: 0px; background-position:100px 200px; height:42px; width:150px;">
 		<b><font color="#000000">Innudate settlements (m):</font></b><br>
-		  <img src="http://guam.csis.u-tokyo.ac.jp:8081/geoserver/servir/wms?service=WMS&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=12&HEIGHT=12&LAYER=servir:exp2030">
+		  <img src="http://guam.csis.u-tokyo.ac.jp:8081/geoserver/servir/wms?service=WMS&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=12&HEIGHT=12&LAYER=servir:exp2016">
 		</div>
 
     </div>
@@ -741,7 +741,7 @@ var flddph1991 =
 		map.addLayer(worldPop);
 		map.addLayer(HRSL2015);
 			
-		map.addLayer(exp2030);
+		//map.addLayer(exp2030);
 		map.addLayer(exp2025);
 		map.addLayer(exp2020);
 		map.addLayer(exp2016);
